@@ -7,6 +7,7 @@ import {
   eraseItem,
 } from "../services/item.service";
 import { handleHttp } from "../utils/error.handle";
+
 const getItem = async ({ params }: Request, res: Response) => {
   try {
     const { id } = params;
@@ -17,7 +18,6 @@ const getItem = async ({ params }: Request, res: Response) => {
     handleHttp(res, "ERROR_GET_ITEM");
   }
 };
-
 const getItems = async (req: Request, res: Response) => {
   try {
     const response = await findItems();
@@ -26,7 +26,6 @@ const getItems = async (req: Request, res: Response) => {
     handleHttp(res, "ERROR_GETS_ITEM");
   }
 };
-
 const updateItem = async ({ params, body }: Request, res: Response) => {
   try {
     const { id } = params;
@@ -36,7 +35,6 @@ const updateItem = async ({ params, body }: Request, res: Response) => {
     handleHttp(res, "ERROR_UPDATE_ITEM");
   }
 };
-
 const postItem = async ({ body }: Request, res: Response) => {
   try {
     const responseItem = await createItem(body);

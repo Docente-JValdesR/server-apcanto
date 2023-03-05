@@ -1,18 +1,18 @@
 import { Router } from "express";
 import {
-  deleteItem,
-  getItem,
-  getItems,
-  postItem,
-  updateItem,
-} from "../controllers/item.controller";
+  getNew,
+  getNews,
+  updateNew,
+  postNew,
+  deleteNew,
+} from "../controllers/news.controller";
 
 const router = Router();
 
-router.get("/:id", getItem);
-router.get("/", getItems);
-router.post("/", postItem);
-router.put("/:id", updateItem);
-router.delete("/:id", deleteItem);
+router.get("/:id", getNew);
+router.get("/", getNews);
+router.post("/", postNew);
+router.put("/:id", updateNew);
+router.delete("/:id", deleteNew);
 
 export { router };

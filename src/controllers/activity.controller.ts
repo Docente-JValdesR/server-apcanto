@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import { Activity } from "../interfaces/activity.interface";
+import { RequestExt } from "../interfaces/req-ext";
 import {
   createActivity,
   findActivitys,
@@ -7,6 +9,7 @@ import {
   eraseActivity,
 } from "../services/activity.service";
 import { handleHttp } from "../utils/error.handle";
+
 const getActivity = async ({ params }: Request, res: Response) => {
   try {
     const { id } = params;
@@ -17,7 +20,6 @@ const getActivity = async ({ params }: Request, res: Response) => {
     handleHttp(res, "ERROR_GET_ITEM");
   }
 };
-
 const getActivitys = async (req: Request, res: Response) => {
   try {
     const response = await findActivitys();
@@ -26,7 +28,6 @@ const getActivitys = async (req: Request, res: Response) => {
     handleHttp(res, "ERROR_GETS_ITEM");
   }
 };
-
 const updateActivity = async ({ params, body }: Request, res: Response) => {
   try {
     const { id } = params;
@@ -36,10 +37,14 @@ const updateActivity = async ({ params, body }: Request, res: Response) => {
     handleHttp(res, "ERROR_UPDATE_ITEM");
   }
 };
-
-const postActivity = async ({ body }: Request, res: Response) => {
+const postActivity = async (req: RequestExt, res: Response) => {
   try {
-    const responseItem = await createActivity(body);
+    const { body, user } = req;
+    const dataToCreate: Activity = {
+      userId: user?.email,
+      ...body,
+    };
+    const responseItem = await createActivity(dataToCreate);
     res.send(responseItem);
   } catch (e) {
     handleHttp(res, "ERROR_CREATE_ITEM", e);

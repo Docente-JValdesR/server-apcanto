@@ -1,6 +1,7 @@
 export interface Activity {
+    userId:string;
     titulo: string;
-    coordinadores: string[];
+    coordinadores: [string];
     descripcion: string;
-    imagen: string[];
+    imagen: [string];
 }

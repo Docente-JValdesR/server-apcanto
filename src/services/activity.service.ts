@@ -1,4 +1,5 @@
 import { Activity } from "../interfaces/activity.interface";
+import { User } from "../interfaces/user.interface";
 import ActivityModel from "../models/activity.model";
 
 const createActivity = async (activity: Activity) => {
@@ -24,7 +25,7 @@ const actualizeActivity = async (id: string, data: Activity) => {
 };
 
 const eraseActivity = async (id: string) => {
-  const responseItem = await ActivityModel.remove({ _id: id });
+  const responseItem = await ActivityModel.deleteOne({ _id: id });
   return responseItem;
 };
 export { createActivity, findActivitys, findActivity, actualizeActivity, eraseActivity };

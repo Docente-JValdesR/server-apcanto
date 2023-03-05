@@ -1,18 +1,18 @@
 import { Router } from "express";
 import {
-  deleteItem,
-  getItem,
-  getItems,
-  postItem,
-  updateItem,
-} from "../controllers/item.controller";
+  getCalendary,
+  getCalendaries,
+  updateCalendary,
+  postCalendary,
+  deleteCalendary,
+} from "../controllers/calendary.controller";
 
 const router = Router();
 
-router.get("/:id", getItem);
-router.get("/", getItems);
-router.post("/", postItem);
-router.put("/:id", updateItem);
-router.delete("/:id", deleteItem);
+router.get("/:id", getCalendary);
+router.get("/", getCalendaries);
+router.post("/", postCalendary);
+router.put("/:id", updateCalendary);
+router.delete("/:id", deleteCalendary);
 
 export { router };

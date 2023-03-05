@@ -1,10 +1,9 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon  ./src/app.ts"
+    "dev": "nodemon ./src/app.ts"
   },
   "keywords": [],
   "author": "",
@@ -26,5 +25,14 @@
     "@types/jsonwebtoken": "^9.0.1",
     "@types/mongoose": "^5.11.97",
     "@types/multer": "^1.4.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Docente-JValdesR/server-apcanto.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Docente-JValdesR/server-apcanto/issues"
+  },
+  "homepage": "https://github.com/Docente-JValdesR/server-apcanto#readme",
+  "description": ""
 }

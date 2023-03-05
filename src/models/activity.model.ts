@@ -3,10 +3,11 @@ import { Activity } from "../interfaces/activity.interface";
 
 const ActivitySchema = new Schema<Activity>(
   {
+    userId:{type: String},
     titulo: { type: String },
-    coordinadores: { type: Array, default: [] },
+    coordinadores: { type: [String] },
     descripcion: { type: String },
-    imagen: { type: Array, default: [] },
+    imagen: { type: [String] },
   },
   {
     timestamps: true,

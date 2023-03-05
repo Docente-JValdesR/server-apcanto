@@ -4,7 +4,13 @@ import UserModel from "../models/user.model";
 import { encrypt, verified } from "../utils/bcrypt.handle";
 import { generateToken } from "../utils/jwt.handle";
 
-const registerNewUser = async ({ email, password, name }: User) => {
+const registerNewUser = async ({
+  email,
+  password,
+  name,
+  cargo,
+  description,
+}: User) => {
   const checkIs = await UserModel.findOne({ email });
   if (checkIs) return "ALREADY_USER";
   const passHash = await encrypt(password);
@@ -12,18 +18,21 @@ const registerNewUser = async ({ email, password, name }: User) => {
     email,
     password: passHash,
     name,
+    cargo,
+    description,
   });
   return registerNewUser;
 };
 
 const loginUser = async ({ email, password }: Auth) => {
   const checkIs = await UserModel.findOne({ email });
-  console.log(checkIs);
   if (!checkIs) return "NOT_FOUND_USER";
+
   const passwordHash = checkIs.password;
   const isCorrect = await verified(password, passwordHash);
+
   if (!isCorrect) return "PASSWORD_INCORRECT";
-  const token = await generateToken(checkIs.id);
+  const token = await generateToken(checkIs.email, checkIs.cargo);
   const data = {
     token,
     user: checkIs,

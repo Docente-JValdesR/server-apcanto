@@ -1,7 +1,6 @@
-export interface Item {
+export interface News {
     titulo: string;
-    subtitulo: string;
-    categoria: string;
     descripcion: string;
     imagen: string;
+    categoria: string;
 }
